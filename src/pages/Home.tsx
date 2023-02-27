@@ -1,9 +1,7 @@
 import React from 'react'
 
 function Home() {
-  return (
-    <div>Home</div>
-  )
+  return <section className="home">Home</section>
 }
 
 export default Home

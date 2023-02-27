@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px $desktop-margin;
+  border-bottom: 2px solid $highlight-primary;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+
+  &__logo-container {
+    display: flex;
+    align-items: center;
+
+    &__logo {
+      width: 64px;
+      aspect-ratio: 1/1;
+    }
+
+    &__text {
+      @include typographies(header);
+    }
+  }
+
+  &__navbar {
+    display: flex;
+    gap: 16px;
+
+    &__link {
+      @include typographies(title);
+      color: $basic-black;
+      text-decoration: none;
+
+      &.active {
+        text-decoration: underline;
+        color: $highlight-primary;
+      }
+    }
+  }
+}
