@@ -128,6 +128,7 @@ function Home() {
               }`}
               name="dateOfBirth"
               id="dateOfBirth"
+              autoComplete="off"
               selected={
                 data.dateOfBirth.value === ''
                   ? null
@@ -171,6 +172,7 @@ function Home() {
               }`}
               name="startDate"
               id="startDate"
+              autoComplete="off"
               selected={
                 data.startDate.value === ''
                   ? null

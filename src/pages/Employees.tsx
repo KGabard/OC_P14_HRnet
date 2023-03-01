@@ -2,7 +2,9 @@ import React from 'react'
 
 function Employees() {
   return (
-    <div>Employees</div>
+    <section className='employees'>
+      <h1 className="employees__title">Employees List</h1>
+    </section>
   )
 }
 

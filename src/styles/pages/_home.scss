@@ -57,6 +57,20 @@
       }
     }
 
+    &__address-fieldset {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px 32px;
+      border: 2px solid $highlight-primary;
+      border-radius: 8px;
+
+      &__legend {
+        @include typographies(body);
+        padding: 0 8px;
+      }
+    }
+
     &__submit-button {
       @include typographies(body-bold);
       color: $basic-white;
