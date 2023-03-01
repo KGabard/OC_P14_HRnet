@@ -1,3 +1,7 @@
+export function subYears(date: Date, years: number): Date {
+  return new Date(date.getFullYear() - years, date.getMonth(), date.getDate())
+}
+
 export const departmentsList = [
   {
     name: 'Sales',

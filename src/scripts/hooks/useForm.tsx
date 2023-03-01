@@ -35,10 +35,8 @@ export const useForm = (callback: any, initialState = {}) => {
           }
           break
         case 'dateOfBirth':
-          console.log(newData[key].value)
-
           if (
-            /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(
+            /^([1-9]|1[012])\/([1-9]|[12][0-9]|3[01])\/(19|20)\d{2}$/.test(
               newData[key].value
             )
           ) {
@@ -51,7 +49,7 @@ export const useForm = (callback: any, initialState = {}) => {
           break
         case 'startDate':
           if (
-            /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(
+            /^([1-9]|1[012])\/([1-9]|[12][0-9]|3[01])\/(19|20)\d{2}$/.test(
               newData[key].value
             )
           ) {
@@ -110,9 +108,22 @@ export const useForm = (callback: any, initialState = {}) => {
     })
   }
 
+  // onDateChange
+  const onDateChange = (targetName: string, date: Date) => {
+    setData({
+      ...data,
+      [targetName]: {
+        ...data[targetName],
+        value: date.toLocaleDateString('en-US'),
+      },
+    })
+  }
+
   // onSubmit
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    console.log(data)
 
     if (isInputValid()) {
       await callback() // triggering the callback
@@ -122,6 +133,7 @@ export const useForm = (callback: any, initialState = {}) => {
   // return values
   return {
     onChange,
+    onDateChange,
     onSubmit,
     data,
   }

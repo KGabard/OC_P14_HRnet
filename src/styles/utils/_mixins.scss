@@ -30,3 +30,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin input($bg-color: $basic-white){
+  @include typographies(body-bold);
+  padding: 8px;
+  border: 1px solid $basic-black;
+  border-radius: 8px;
+  outline: none;
+  background-color: $bg-color;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+
+  &:focus {
+    border: 3px solid $basic-black;
+  }
+
+  &--error {
+    border: 1px solid $error-primary;
+  }
+}

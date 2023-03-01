@@ -1,6 +1,10 @@
 import React from 'react'
 import { useForm } from '../scripts/hooks/useForm'
-import { departmentsList, statesList } from '../scripts/utils/Utils'
+import { departmentsList, statesList, subYears } from '../scripts/utils/Utils'
+import DatePicker from 'react-datepicker'
+import calendarIcon from '../assets/icons/calendar-icon.svg'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 function Home() {
   // defining the initial state for the form
@@ -44,7 +48,7 @@ function Home() {
   }
 
   // getting the event handlers from our custom hook
-  const { onChange, onSubmit, data } = useForm(
+  const { onChange, onDateChange, onSubmit, data } = useForm(
     addEmployeeCallback,
     initialState
   )
@@ -66,7 +70,11 @@ function Home() {
             First Name
           </label>
           <input
-            className="home__form__input-container__text-input"
+            className={`home__form__input-container__text-input ${
+              data.firstName.error.length > 0
+                ? `home__form__input-container__text-input--error`
+                : ''
+            }`}
             name="firstName"
             id="firstName"
             type="text"
@@ -87,7 +95,11 @@ function Home() {
             Last Name
           </label>
           <input
-            className="home__form__input-container__text-input"
+            className={`home__form__input-container__text-input ${
+              data.lastName.error.length > 0
+                ? `home__form__input-container__text-input--error`
+                : ''
+            }`}
             name="lastName"
             id="lastName"
             type="text"
@@ -107,14 +119,36 @@ function Home() {
           >
             Date of Birth
           </label>
-          <input
-            className="home__form__input-container__date-input"
-            name="dateOfBirth"
-            id="dateOfBirth"
-            type="date"
-            onChange={onChange}
-            value={data.dateOfBirth.value}
-          />
+          <div className="home__form__input-container__date-container">
+            <DatePicker
+              className={`home__form__input-container__date-input ${
+                data.dateOfBirth.error.length > 0
+                  ? `home__form__input-container__date-input--error`
+                  : ''
+              }`}
+              name="dateOfBirth"
+              id="dateOfBirth"
+              selected={
+                data.dateOfBirth.value === ''
+                  ? null
+                  : new Date(data.dateOfBirth.value)
+              }
+              onChange={(date) => {
+                if (date) onDateChange('dateOfBirth', date)
+              }}
+              minDate={subYears(new Date(), 70)}
+              maxDate={subYears(new Date(), 18)}
+              showYearDropdown
+              showMonthDropdown
+              yearDropdownItemNumber={70}
+              scrollableYearDropdown
+            />
+            <img
+              src={calendarIcon}
+              alt="Calendar icon"
+              className="home__form__input-container__date-logo"
+            />
+          </div>
           {data.dateOfBirth.error.length > 0 && (
             <p className="home__form__input-container__error">
               {data.dateOfBirth.error}
@@ -128,14 +162,36 @@ function Home() {
           >
             Start Date
           </label>
-          <input
-            className="home__form__input-container__date-input"
-            name="startDate"
-            id="startDate"
-            type="date"
-            onChange={onChange}
-            value={data.startDate.value}
-          />
+          <div className="home__form__input-container__date-container">
+            <DatePicker
+              className={`home__form__input-container__date-input ${
+                data.startDate.error.length > 0
+                  ? `home__form__input-container__date-input--error`
+                  : ''
+              }`}
+              name="startDate"
+              id="startDate"
+              selected={
+                data.startDate.value === ''
+                  ? null
+                  : new Date(data.startDate.value)
+              }
+              onChange={(date) => {
+                if (date) onDateChange('startDate', date)
+              }}
+              minDate={new Date('01/01/2006')}
+              maxDate={new Date()}
+              showYearDropdown
+              showMonthDropdown
+              yearDropdownItemNumber={20}
+              scrollableYearDropdown
+            />
+            <img
+              src={calendarIcon}
+              alt="Calendar icon"
+              className="home__form__input-container__date-logo"
+            />
+          </div>
           {data.startDate.error.length > 0 && (
             <p className="home__form__input-container__error">
               {data.startDate.error}
@@ -154,7 +210,11 @@ function Home() {
               Street
             </label>
             <input
-              className="home__form__input-container__text-input"
+              className={`home__form__input-container__text-input ${
+                data.street.error.length > 0
+                  ? `home__form__input-container__text-input--error`
+                  : ''
+              }`}
               name="street"
               id="street"
               type="text"
@@ -175,7 +235,11 @@ function Home() {
               City
             </label>
             <input
-              className="home__form__input-container__text-input"
+              className={`home__form__input-container__text-input ${
+                data.city.error.length > 0
+                  ? `home__form__input-container__text-input--error`
+                  : ''
+              }`}
               name="city"
               id="city"
               type="text"
@@ -196,7 +260,11 @@ function Home() {
               State
             </label>
             <select
-              className="home__form__input-container__select-input"
+              className={`home__form__input-container__select-input ${
+                data.state.error.length > 0
+                  ? `home__form__input-container__select-input--error`
+                  : ''
+              }`}
               name="state"
               id="state"
               // value={data.state.value}
@@ -220,7 +288,11 @@ function Home() {
               Zip Code
             </label>
             <input
-              className="home__form__input-container__text-input"
+              className={`home__form__input-container__text-input ${
+                data.zipCode.error.length > 0
+                  ? `home__form__input-container__text-input--error`
+                  : ''
+              }`}
               name="zipCode"
               id="zipCode"
               type="text"
@@ -242,7 +314,11 @@ function Home() {
             Department
           </label>
           <select
-            className="home__form__input-container__select-input"
+            className={`home__form__input-container__select-input ${
+              data.department.error.length > 0
+                ? `home__form__input-container__select-input--error`
+                : ''
+            }`}
             name="department"
             id="department"
             // value={data.department.value}
