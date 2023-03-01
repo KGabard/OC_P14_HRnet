@@ -1,12 +1,20 @@
 import React from 'react'
 import { useForm } from '../scripts/hooks/useForm'
-import { departmentsList, statesList, subYears } from '../scripts/utils/Utils'
+import {
+  departmentsList,
+  initializeLocalStorage,
+  statesList,
+  subYears,
+} from '../scripts/utils/Utils'
 import DatePicker from 'react-datepicker'
 import calendarIcon from '../assets/icons/calendar-icon.svg'
 
 import 'react-datepicker/dist/react-datepicker.css'
+import { employeeType } from '../scripts/types/Types'
 
 function Home() {
+  initializeLocalStorage()
+
   // defining the initial state for the form
   const initialState = {
     firstName: {
@@ -55,7 +63,25 @@ function Home() {
 
   // a submit function that will execute upon form submission
   function addEmployeeCallback() {
-    console.log(data)
+    const employeesList: employeeType[] = JSON.parse(
+      localStorage.getItem('employeesList') || '[]'
+    )
+
+    const employee = {
+      firstName: data.firstName.value,
+      lastName: data.lastName.value,
+      dateOfBirth: data.dateOfBirth.value,
+      startDate: data.startDate.value,
+      street: data.street.value,
+      city: data.city.value,
+      state: data.state.value,
+      zipCode: data.zipCode.value,
+      department: data.department.value,
+    }
+
+    employeesList.push(employee)
+
+    localStorage.setItem('employeesList', JSON.stringify(employeesList))
   }
 
   return (
@@ -269,7 +295,7 @@ function Home() {
               }`}
               name="state"
               id="state"
-              // value={data.state.value}
+              onChange={onChange}
             >
               {statesList.map((state) => (
                 <option

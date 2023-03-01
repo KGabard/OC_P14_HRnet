@@ -1,5 +1,15 @@
+import { employeesList } from '../../data/employeesData'
+
 export function subYears(date: Date, years: number): Date {
   return new Date(date.getFullYear() - years, date.getMonth(), date.getDate())
+}
+
+export function initializeLocalStorage() {
+  if (localStorage.getItem('employeesList') === null) {
+    console.log('initializing local storage')
+
+    localStorage.setItem('employeesList', JSON.stringify(employeesList))
+  }
 }
 
 export const departmentsList = [

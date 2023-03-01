@@ -99,6 +99,9 @@ export const useForm = (callback: any, initialState = {}) => {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let currentValue = event.target.value
 
+    console.log(event.target.name, currentValue);
+    
+
     setData({
       ...data,
       [event.target.name]: {
