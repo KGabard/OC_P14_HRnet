@@ -6,10 +6,19 @@ export function subYears(date: Date, years: number): Date {
 
 export function initializeLocalStorage() {
   if (localStorage.getItem('employeesList') === null) {
-    console.log('initializing local storage')
+    console.log('Initializing local storage')
 
     localStorage.setItem('employeesList', JSON.stringify(employeesList))
   }
+}
+
+export function convertCamelCaseToTitleCase(stringToConvert: string): string {
+  return stringToConvert
+    .replace(/([a-z])([A-Z])/g, '$1 $2') // Insert space before capital letters
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Insert space between consecutive capital letters
+    .split(' ') // Split string into array of words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter of each word
+    .join(' ') // Join array of words back into string
 }
 
 export const departmentsList = [

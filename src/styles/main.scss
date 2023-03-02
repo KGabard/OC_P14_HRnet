@@ -5,9 +5,12 @@
 @import './Utils/animations';
 @import './Base/base';
 
+@import './components/line';
+
 @import './layouts/header';
 @import './layouts/footer';
 @import './layouts/page-layout';
+@import './layouts/array';
 
 @import './pages/home';
 @import './pages/employees';

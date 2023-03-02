@@ -106,9 +106,7 @@ export const useForm = (callback: any, initialState = {}) => {
     if (event.target instanceof HTMLSelectElement) {
       currentValue = event.target.options[event.target.selectedIndex].text
     }
-
-    console.log(event.target.name, currentValue)
-
+    
     setData({
       ...data,
       [event.target.name]: {
@@ -133,7 +131,7 @@ export const useForm = (callback: any, initialState = {}) => {
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    console.log(data)
+    // console.log(data)
 
     if (isInputValid()) {
       await callback() // triggering the callback
