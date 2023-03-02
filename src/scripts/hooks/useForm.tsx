@@ -96,11 +96,18 @@ export const useForm = (callback: any, initialState = {}) => {
   }
 
   // onChange
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     let currentValue = event.target.value
 
-    console.log(event.target.name, currentValue);
-    
+    if (event.target instanceof HTMLSelectElement) {
+      currentValue = event.target.options[event.target.selectedIndex].text
+    }
+
+    console.log(event.target.name, currentValue)
 
     setData({
       ...data,

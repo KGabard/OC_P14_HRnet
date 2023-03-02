@@ -349,7 +349,7 @@ function Home() {
             }`}
             name="department"
             id="department"
-            // value={data.department.value}
+            onChange={onChange}
           >
             {departmentsList.map((department) => (
               <option
