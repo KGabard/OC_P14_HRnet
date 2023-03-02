@@ -6,8 +6,20 @@
   &__header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     list-style: none;
+
+    &__item {
+      width: 0;
+      @include typographies(body-bold);
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      overflow:hidden;
+      padding: 8px 4px;
+    }
+
+    &__item:nth-child(odd) {
+      background-color: rgba($color: #15b163, $alpha: 0.2);
+    }
   }
 }

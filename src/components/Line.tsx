@@ -4,6 +4,7 @@ import { DataType } from '../layouts/Array'
 type Props = {
   data: DataType
   referenceKeys: string[]
+  columnsWidth: number[]
 }
 
 // Function that check if the keys of the current object are the same as the reference keys
@@ -16,14 +17,14 @@ function isKeysEqualsReferenceKeys(item: DataType, referenceKeys: string[]) {
   )
 }
 
-function Line({ data, referenceKeys }: Props) {
+function Line({ data, referenceKeys, columnsWidth }: Props) {
   const values = Object.values(data)
 
   return isKeysEqualsReferenceKeys(data, referenceKeys) ? (
     <ul className="array__line">
       {values.map((value, index) => {
         return (
-          <li className="array__line__item" key={index}>
+          <li className="array__line__item" key={index} style={{ flexGrow: columnsWidth[index] }}>
             {value}
           </li>
         )
