@@ -61,11 +61,11 @@ export const useForm = (callback: any, initialState = {}) => {
           }
           break
         case 'street':
-          if (/^[a-zA-Z0-9]{2,20}$/.test(newData[key].value)) {
+          if (/^[a-zA-Z0-9]{2,30}$/.test(newData[key].value)) {
             newData[key].error = ''
           } else {
             newData[key].error =
-              'Please enter a street name containing between 2 and 20 characters.'
+              'Please enter a street name containing between 2 and 30 characters.'
             validity = false
           }
           break
