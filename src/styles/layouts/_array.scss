@@ -17,23 +17,6 @@
     padding: 24px;
   }
 
-  &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    list-style: none;
-    border-bottom: 2px solid $highlight-primary;
-
-    &__item {
-      width: 0;
-      @include typographies(body-bold);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      padding: 8px 0;
-    }
-  }
-
   &__error {
     width: 100%;
     @include typographies(body);

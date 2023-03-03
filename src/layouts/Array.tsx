@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Line from '../components/Line'
+import ArrayHeader from '../components/ArrayHeader'
+import ArrayLine from '../components/ArrayLine'
 import NumberOfEntries from '../components/NumberOfEntries'
 import PageSelector from '../components/PageSelector'
 import Search from '../components/Search'
@@ -9,30 +10,15 @@ export type DataType = {
   [key: string]: string
 }
 
+export type sortType = {
+  value: string | null
+  order: 'asc' | 'desc' | null
+}
+
 type Props = {
   data: DataType[]
   columnsWidth: number[]
 }
-
-// function stringLengthOverArrayTotalLength(
-//   currentString: string,
-//   stringArray: string[]
-// ) {
-//   const stringArrayTotalLength = stringArray.reduce(
-//     (acc, string) => acc + string.length,
-//     0
-//   )
-
-//   return Math.round((currentString.length / stringArrayTotalLength) * 100)
-// }
-
-// function calculateColumnsWidth(referenceKeys: string[]) {
-//   const columnsWidth = referenceKeys.map((key) =>
-//     stringLengthOverArrayTotalLength(key, referenceKeys)
-//   )
-
-//   return columnsWidth
-// }
 
 function Array({ data, columnsWidth }: Props) {
   let propsError = false
@@ -40,6 +26,7 @@ function Array({ data, columnsWidth }: Props) {
 
   const [currentPage, setCurrentPage] = useState(1)
   const [entriesPerPage, setEntriesPerPage] = useState(10)
+  const [sort, setSort] = useState<sortType>({ value: null, order: null })
 
   const maxPage = Math.ceil(data.length / entriesPerPage)
 
@@ -73,20 +60,14 @@ function Array({ data, columnsWidth }: Props) {
       />
       <Search />
       <div className="array__container">
-        <ul className="array__header">
-          {referenceKeys.map((key, index) => (
-            <li
-              className="array__header__item"
-              key={index}
-              style={{ flex: columnsWidth[index] }}
-            >
-              {convertCamelCaseToTitleCase(key)}
-            </li>
-          ))}
-        </ul>
+        <ArrayHeader
+          referenceKeys={referenceKeys}
+          columnsWidth={columnsWidth}
+          sort={sort}
+        />
         {currentData.map((item, index) => {
           return (
-            <Line
+            <ArrayLine
               data={item}
               referenceKeys={referenceKeys}
               columnsWidth={columnsWidth}

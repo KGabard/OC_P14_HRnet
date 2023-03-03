@@ -5,6 +5,7 @@
   flex-direction: row;
   gap: 8px;
   align-items: center;
+  align-self: end;
 
   &__select {
     @include typographies(body);
