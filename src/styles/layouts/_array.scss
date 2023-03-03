@@ -17,14 +17,19 @@
     padding: 24px;
   }
 
-  &__error {
+  &__error,&__no-data {
     width: 100%;
     @include typographies(body);
+    margin-top: 4px;
     padding: 12px 0px 12px 16px;
     border-radius: 6px;
     background-color: rgba($color: $error-primary, $alpha: 1);
     text-align: center;
     color: $basic-white;
+  }
+
+  &__error {
+    grid-column: 1 / -1;
   }
 
   &__page-indicator {

@@ -17,7 +17,7 @@ export const useForm = (callback: any, initialState = {}) => {
     for (let key of Object.keys(newData)) {
       switch (key) {
         case 'firstName':
-          if (/^[a-zA-Z0-9]{2,15}$/.test(newData[key].value)) {
+          if (/^[a-zA-Z -]{2,15}$/.test(newData[key].value)) {
             newData[key].error = ''
           } else {
             newData[key].error =
@@ -26,7 +26,7 @@ export const useForm = (callback: any, initialState = {}) => {
           }
           break
         case 'lastName':
-          if (/^[a-zA-Z0-9]{2,15}$/.test(newData[key].value)) {
+          if (/^[a-zA-Z -]{2,15}$/.test(newData[key].value)) {
             newData[key].error = ''
           } else {
             newData[key].error =
@@ -61,7 +61,7 @@ export const useForm = (callback: any, initialState = {}) => {
           }
           break
         case 'street':
-          if (/^[a-zA-Z0-9]{2,30}$/.test(newData[key].value)) {
+          if (/^[a-zA-Z0-9 -]{2,30}$/.test(newData[key].value)) {
             newData[key].error = ''
           } else {
             newData[key].error =
@@ -70,7 +70,7 @@ export const useForm = (callback: any, initialState = {}) => {
           }
           break
         case 'city':
-          if (/^[a-zA-Z0-9]{2,20}$/.test(newData[key].value)) {
+          if (/^[a-zA-Z -]{2,20}$/.test(newData[key].value)) {
             newData[key].error = ''
           } else {
             newData[key].error =

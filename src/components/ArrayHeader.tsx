@@ -11,9 +11,19 @@ type Props = {
   setPage: (page: number) => void
 }
 
-function ArrayHeader({ referenceKeys, columnsWidth, sort, setSort, setPage }: Props) {
+function ArrayHeader({
+  referenceKeys,
+  columnsWidth,
+  sort,
+  setSort,
+  setPage,
+}: Props) {
   const handleSort = (key: string, order: 'asc' | 'desc') => {
-    setSort({ value: key, order })
+    if (key === sort.value && order === sort.order) {
+      setSort({ value: null, order: null })
+    } else {
+      setSort({ value: key, order })
+    }
     setPage(1)
   }
 
