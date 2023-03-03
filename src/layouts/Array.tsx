@@ -18,6 +18,9 @@ export type sortType = {
 type Props = {
   data: DataType[]
   columnsWidth: number[]
+  enableNumberOfEntries?: boolean
+  enableSearch?: boolean
+  enableSort?: boolean
 }
 
 function filterArray(data: DataType[], search: string) {
@@ -36,30 +39,39 @@ function filterArray(data: DataType[], search: string) {
   return filteredData
 }
 
-function Array({ data, columnsWidth }: Props) {
+function Array({
+  data,
+  columnsWidth,
+  enableNumberOfEntries = false,
+  enableSearch = false,
+  enableSort = false,
+}: Props) {
   let propsError = false
   const referenceKeys = data.length > 0 ? Object.keys(data[0]) : []
 
   const [currentPage, setCurrentPage] = useState(1)
   const [entriesPerPage, setEntriesPerPage] = useState(10)
   const [sort, setSort] = useState<sortType>({ value: null, order: null })
-  const [search, setSearch] = useState<string>('')
+  const [search, setSearch] = useState('')
 
+  console.log(sort)
+
+  let filteredData = [...data]
   if (search !== '') {
-    data = filterArray(data, search)
+    filteredData = filterArray(filteredData, search)
   }
 
   const currentFirstItem = Math.min(
     (currentPage - 1) * entriesPerPage + 1,
-    data.length
+    filteredData.length
   )
-  const currentLastItem = Math.min(currentPage * entriesPerPage, data.length)
-  const maxPage = Math.ceil(data.length / entriesPerPage)
+  const currentLastItem = Math.min(currentPage * entriesPerPage, filteredData.length)
+  const maxPage = Math.ceil(filteredData.length / entriesPerPage)
 
   if (sort.value !== null && sort.order !== null) {
-    data = sortData(data, sort)
+    filteredData = sortData(filteredData, sort)
   }
-  const currentData = data.slice(currentFirstItem - 1, currentLastItem)
+  const sliceData = filteredData.slice(currentFirstItem - 1, currentLastItem)
 
   const nextPage = () => {
     if (currentPage < maxPage) {
@@ -79,12 +91,20 @@ function Array({ data, columnsWidth }: Props) {
 
   return !propsError ? (
     <section className="array">
-      <NumberOfEntries
-        numberOfEntries={entriesPerPage}
-        setNumberOfEntries={setEntriesPerPage}
-        setPage={setCurrentPage}
-      />
-      <Search search={search} setSearch={setSearch} setPage={setCurrentPage} />
+      {enableNumberOfEntries && (
+        <NumberOfEntries
+          numberOfEntries={entriesPerPage}
+          setNumberOfEntries={setEntriesPerPage}
+          setPage={setCurrentPage}
+        />
+      )}
+      {enableSearch && (
+        <Search
+          search={search}
+          setSearch={setSearch}
+          setPage={setCurrentPage}
+        />
+      )}
       <div className="array__container">
         <ArrayHeader
           referenceKeys={referenceKeys}
@@ -92,9 +112,10 @@ function Array({ data, columnsWidth }: Props) {
           sort={sort}
           setSort={setSort}
           setPage={setCurrentPage}
+          enableSort={enableSort}
         />
-        {currentData.length > 0 ? (
-          currentData.map((item, index) => {
+        {sliceData.length > 0 ? (
+          sliceData.map((item, index) => {
             return (
               <ArrayLine
                 data={item}

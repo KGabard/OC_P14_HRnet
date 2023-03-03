@@ -43,6 +43,9 @@ function Employees() {
           employeesList
         }
         columnsWidth={[1, 1, 0.85, 1, 0.85, 1, 1, 1, 0.7]}
+        enableNumberOfEntries={true}
+        enableSearch={true}
+        enableSort={true}
       />
     </section>
   )
