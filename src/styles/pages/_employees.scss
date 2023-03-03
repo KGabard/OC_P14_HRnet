@@ -5,10 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 $desktop-margin;
+  padding: 40px $desktop-margin 56px;
+  gap: 8px;
 
   &__title {
     @include typographies(header);
-    margin: 40px 0 8px;
   }
 }

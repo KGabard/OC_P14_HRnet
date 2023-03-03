@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Line from '../components/Line'
+import PageSelector from '../components/PageSelector'
 import { convertCamelCaseToTitleCase } from '../scripts/utils/Utils'
 
 export type DataType = {
@@ -34,17 +35,28 @@ type Props = {
 function Array({ data, columnsWidth }: Props) {
   let propsError = false
   const referenceKeys = data.length > 0 ? Object.keys(data[0]) : []
+
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(10)
-  const [maxPage, setMaxPage] = useState(Math.ceil(data.length / itemsPerPage))
 
-  console.log(maxPage);
-  
+  const maxPage = Math.ceil(data.length / itemsPerPage)
 
-  const currentData = data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  )
+  const currentFirstItem = (currentPage - 1) * itemsPerPage + 1
+  const currentLastItem = Math.min(currentPage * itemsPerPage, data.length)
+
+  const currentData = data.slice(currentFirstItem - 1, currentLastItem - 1)
+
+  const nextPage = () => {
+    if (currentPage < maxPage) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
 
   if (columnsWidth.length !== referenceKeys.length || data.length === 0) {
     propsError = true
@@ -52,27 +64,37 @@ function Array({ data, columnsWidth }: Props) {
 
   return !propsError ? (
     <section className="array">
-      <ul className="array__header">
-        {referenceKeys.map((key, index) => (
-          <li
-            className="array__header__item"
-            key={index}
-            style={{ flex: columnsWidth[index] }}
-          >
-            {convertCamelCaseToTitleCase(key)}
-          </li>
-        ))}
-      </ul>
-      {currentData.map((item, index) => {
-        return (
-          <Line
-            data={item}
-            referenceKeys={referenceKeys}
-            columnsWidth={columnsWidth}
-            key={index}
-          />
-        )
-      })}
+      <div className="array__container">
+        <ul className="array__header">
+          {referenceKeys.map((key, index) => (
+            <li
+              className="array__header__item"
+              key={index}
+              style={{ flex: columnsWidth[index] }}
+            >
+              {convertCamelCaseToTitleCase(key)}
+            </li>
+          ))}
+        </ul>
+        {currentData.map((item, index) => {
+          return (
+            <Line
+              data={item}
+              referenceKeys={referenceKeys}
+              columnsWidth={columnsWidth}
+              key={index}
+            />
+          )
+        })}
+      </div>
+      <p className="array__page-indicator">{`Showing ${currentFirstItem} to ${currentLastItem} of ${data.length} entries`}</p>
+      <PageSelector
+        currentPage={currentPage}
+        maxPage={maxPage}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        setPage={setCurrentPage}
+      />
     </section>
   ) : (
     <section className="array">
