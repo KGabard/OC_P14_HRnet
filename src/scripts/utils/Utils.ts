@@ -21,6 +21,15 @@ export function convertCamelCaseToTitleCase(stringToConvert: string): string {
     .join(' ') // Join array of words back into string
 }
 
+export function stringIsADate(string: string) {
+  const date = new Date(string)
+  return date instanceof Date && !isNaN(date.getTime())
+}
+
+export function stringIsANumber(string: string) {
+  return !isNaN(Number(string))
+}
+
 export const departmentsList = [
   {
     name: 'Sales',

@@ -7,9 +7,16 @@ type Props = {
   referenceKeys: string[]
   columnsWidth: number[]
   sort: sortType
+  setSort: (sort: sortType) => void
+  setPage: (page: number) => void
 }
 
-function ArrayHeader({ referenceKeys, columnsWidth, sort }: Props) {
+function ArrayHeader({ referenceKeys, columnsWidth, sort, setSort, setPage }: Props) {
+  const handleSort = (key: string, order: 'asc' | 'desc') => {
+    setSort({ value: key, order })
+    setPage(1)
+  }
+
   return (
     <ul className="array-header">
       {referenceKeys.map((key, index) => (
@@ -28,6 +35,7 @@ function ArrayHeader({ referenceKeys, columnsWidth, sort }: Props) {
                   ? 'array-header__item__sort-container__button--active'
                   : ''
               }`}
+              onClick={() => handleSort(key, 'asc')}
             >
               <img
                 src={triangleIcon}
@@ -41,6 +49,7 @@ function ArrayHeader({ referenceKeys, columnsWidth, sort }: Props) {
                   ? 'array-header__item__sort-container__button--active'
                   : ''
               }`}
+              onClick={() => handleSort(key, 'desc')}
             >
               <img
                 src={triangleIcon}

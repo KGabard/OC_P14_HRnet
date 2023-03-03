@@ -4,7 +4,7 @@ import ArrayLine from '../components/ArrayLine'
 import NumberOfEntries from '../components/NumberOfEntries'
 import PageSelector from '../components/PageSelector'
 import Search from '../components/Search'
-import { convertCamelCaseToTitleCase } from '../scripts/utils/Utils'
+import { sortData } from '../scripts/utils/SortLogic'
 
 export type DataType = {
   [key: string]: string
@@ -33,6 +33,9 @@ function Array({ data, columnsWidth }: Props) {
   const currentFirstItem = (currentPage - 1) * entriesPerPage + 1
   const currentLastItem = Math.min(currentPage * entriesPerPage, data.length)
 
+  if (sort.value !== null && sort.order !== null) {
+    data = sortData(data, sort)
+  }
   const currentData = data.slice(currentFirstItem - 1, currentLastItem)
 
   const nextPage = () => {
@@ -64,6 +67,8 @@ function Array({ data, columnsWidth }: Props) {
           referenceKeys={referenceKeys}
           columnsWidth={columnsWidth}
           sort={sort}
+          setSort={setSort}
+          setPage={setCurrentPage}
         />
         {currentData.map((item, index) => {
           return (
