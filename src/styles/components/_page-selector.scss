@@ -7,8 +7,8 @@
   gap: 4px;
 
   &__button {
-    width: 32px;
-    min-width: fit-content;
+    min-width: 32px;
+    width: fit-content;
     padding: 8px;
     height: 40px;
     @include typographies(body-bold);
@@ -23,6 +23,20 @@
       transition: background-color 0.2s ease-in-out;
       background-color: $highlight-secondary;
       cursor: pointer;
+    }
+
+    &__previous-icon,
+    &__next-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    &__previous-icon {
+      transform: rotate(-90deg);
+    }
+
+    &__next-icon {
+      transform: rotate(90deg);
     }
   }
 }

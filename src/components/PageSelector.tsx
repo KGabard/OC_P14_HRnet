@@ -1,4 +1,5 @@
 import React from 'react'
+import triangleIcon from '../assets/icons/triangle-icon.svg'
 
 type Props = {
   currentPage: number
@@ -65,7 +66,7 @@ function PageSelector({
   return (
     <div className="page-selector">
       <button className="page-selector__button" onClick={previousPage}>
-        P
+        <img src={triangleIcon} alt={'Previous'} className="page-selector__button__previous-icon" />
       </button>
       {pageArray.map((page, index) => (
         <button
@@ -82,7 +83,7 @@ function PageSelector({
         </button>
       ))}
       <button className="page-selector__button" onClick={nextPage}>
-        N
+        <img src={triangleIcon} alt={'Next'} className="page-selector__button__next-icon" />
       </button>
     </div>
   )

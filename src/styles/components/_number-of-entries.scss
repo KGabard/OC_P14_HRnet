@@ -1,0 +1,16 @@
+.number-of-entries {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+
+  &__select {
+    @include typographies(body);
+    padding: 0 0 0 4px;
+    border-radius: 6px;
+  }
+
+  &__text {
+    @include typographies(body);
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Line from '../components/Line'
+import NumberOfEntries from '../components/NumberOfEntries'
 import PageSelector from '../components/PageSelector'
 import { convertCamelCaseToTitleCase } from '../scripts/utils/Utils'
 
@@ -37,14 +38,14 @@ function Array({ data, columnsWidth }: Props) {
   const referenceKeys = data.length > 0 ? Object.keys(data[0]) : []
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(10)
+  const [entriesPerPage, setEntriesPerPage] = useState(10)
 
-  const maxPage = Math.ceil(data.length / itemsPerPage)
+  const maxPage = Math.ceil(data.length / entriesPerPage)
 
-  const currentFirstItem = (currentPage - 1) * itemsPerPage + 1
-  const currentLastItem = Math.min(currentPage * itemsPerPage, data.length)
+  const currentFirstItem = (currentPage - 1) * entriesPerPage + 1
+  const currentLastItem = Math.min(currentPage * entriesPerPage, data.length)
 
-  const currentData = data.slice(currentFirstItem - 1, currentLastItem - 1)
+  const currentData = data.slice(currentFirstItem - 1, currentLastItem)
 
   const nextPage = () => {
     if (currentPage < maxPage) {
@@ -64,6 +65,7 @@ function Array({ data, columnsWidth }: Props) {
 
   return !propsError ? (
     <section className="array">
+      <NumberOfEntries numberOfEntries={entriesPerPage} setNumberOfEntries={setEntriesPerPage} setPage={setCurrentPage} />
       <div className="array__container">
         <ul className="array__header">
           {referenceKeys.map((key, index) => (
