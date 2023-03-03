@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Line from '../components/Line'
 import NumberOfEntries from '../components/NumberOfEntries'
 import PageSelector from '../components/PageSelector'
+import Search from '../components/Search'
 import { convertCamelCaseToTitleCase } from '../scripts/utils/Utils'
 
 export type DataType = {
@@ -65,7 +66,12 @@ function Array({ data, columnsWidth }: Props) {
 
   return !propsError ? (
     <section className="array">
-      <NumberOfEntries numberOfEntries={entriesPerPage} setNumberOfEntries={setEntriesPerPage} setPage={setCurrentPage} />
+      <NumberOfEntries
+        numberOfEntries={entriesPerPage}
+        setNumberOfEntries={setEntriesPerPage}
+        setPage={setCurrentPage}
+      />
+      <Search />
       <div className="array__container">
         <ul className="array__header">
           {referenceKeys.map((key, index) => (
