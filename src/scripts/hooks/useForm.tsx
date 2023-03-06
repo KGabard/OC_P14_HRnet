@@ -10,6 +10,10 @@ type DataType = {
 export const useForm = (callback: any, initialState = {}) => {
   const [data, setData] = useState<DataType>(initialState)
 
+  function reinitializeData() {
+    setData(initialState)
+  }
+
   function isInputValid() {
     const newData = { ...data }
     let validity = true
@@ -106,7 +110,7 @@ export const useForm = (callback: any, initialState = {}) => {
     if (event.target instanceof HTMLSelectElement) {
       currentValue = event.target.options[event.target.selectedIndex].text
     }
-    
+
     setData({
       ...data,
       [event.target.name]: {
@@ -144,5 +148,6 @@ export const useForm = (callback: any, initialState = {}) => {
     onDateChange,
     onSubmit,
     data,
+    reinitializeData,
   }
 }

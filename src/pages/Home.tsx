@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from '../scripts/hooks/useForm'
 import {
   departmentsList,
@@ -11,9 +11,12 @@ import calendarIcon from '../assets/icons/calendar-icon.svg'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import { employeeType } from '../scripts/types/Types'
+import Modal from '../components/Modal'
 
 function Home() {
   initializeLocalStorage()
+
+  const [isModalActive, setIsModalActive] = useState(true)
 
   // defining the initial state for the form
   const initialState = {
@@ -42,7 +45,7 @@ function Home() {
       error: '',
     },
     state: {
-      value: '',
+      value: 'Alabama',
       error: '',
     },
     zipCode: {
@@ -50,13 +53,13 @@ function Home() {
       error: '',
     },
     department: {
-      value: '',
+      value: 'Sales',
       error: '',
     },
   }
 
   // getting the event handlers from our custom hook
-  const { onChange, onDateChange, onSubmit, data } = useForm(
+  const { onChange, onDateChange, onSubmit, data, reinitializeData } = useForm(
     addEmployeeCallback,
     initialState
   )
@@ -66,28 +69,37 @@ function Home() {
     const employeesList: employeeType[] = JSON.parse(
       localStorage.getItem('employeesList') || '[]'
     )
+    const formElement = document.getElementById('home__form') as HTMLFormElement
 
     const employee = {
       firstName: data.firstName.value,
       lastName: data.lastName.value,
-      dateOfBirth: data.dateOfBirth.value,
       startDate: data.startDate.value,
+      department: data.department.value,
+      dateOfBirth: data.dateOfBirth.value,
       street: data.street.value,
       city: data.city.value,
       state: data.state.value,
       zipCode: data.zipCode.value,
-      department: data.department.value,
     }
 
     employeesList.push(employee)
 
     localStorage.setItem('employeesList', JSON.stringify(employeesList))
+
+    reinitializeData()
+    formElement.reset()
   }
 
   return (
     <section className="home">
+      <Modal
+        text="Employee added successfully!"
+        isActive={isModalActive}
+        setIsActive={setIsModalActive}
+      />
       <h1 className="home__title">Add Employee</h1>
-      <form className="home__form" onSubmit={onSubmit}>
+      <form className="home__form" id="home__form" onSubmit={onSubmit}>
         <div className="home__form__input-container">
           <label
             className="home__form__input-container__label"

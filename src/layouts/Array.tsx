@@ -53,9 +53,7 @@ function Array({
   const [entriesPerPage, setEntriesPerPage] = useState(10)
   const [sort, setSort] = useState<sortType>({ value: null, order: null })
   const [search, setSearch] = useState('')
-
-  console.log(sort)
-
+  
   let filteredData = [...data]
   if (search !== '') {
     filteredData = filterArray(filteredData, search)

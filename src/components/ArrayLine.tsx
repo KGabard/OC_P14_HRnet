@@ -8,7 +8,10 @@ type Props = {
 }
 
 // Function that check if the keys of the current object are the same as the reference keys
-function isKeysEqualsReferenceKeys(item: DataType, referenceKeys: string[]) {
+export function isKeysEqualsReferenceKeys(
+  item: DataType,
+  referenceKeys: string[]
+) {
   const currentKeys = Object.keys(item)
 
   return (
@@ -17,10 +20,20 @@ function isKeysEqualsReferenceKeys(item: DataType, referenceKeys: string[]) {
   )
 }
 
+// Function that check if the keys of the current object are in the same order than the reference keys
+export function isKeysInSameOrderThanReferenceKeys(
+  item: DataType,
+  referenceKeys: string[]
+) {
+  const currentKeys = Object.keys(item)
+
+  return currentKeys.every((key, index) => key === referenceKeys[index])
+}
+
 function ArrayLine({ data, referenceKeys, columnsWidth }: Props) {
   const values = Object.values(data)
 
-  return isKeysEqualsReferenceKeys(data, referenceKeys) ? (
+  return isKeysInSameOrderThanReferenceKeys(data, referenceKeys) ? (
     <ul className="array-line">
       {values.map((value, index) => {
         return (
@@ -36,7 +49,11 @@ function ArrayLine({ data, referenceKeys, columnsWidth }: Props) {
     </ul>
   ) : (
     <ul className="array-line">
-      <p className="array-line__error">Keys don't match reference keys</p>
+      <p className="array-line__error">
+        {isKeysEqualsReferenceKeys(data, referenceKeys)
+          ? 'The keys are not in the same order than the reference keys'
+          : 'The keys are not the same than the reference keys'}
+      </p>
     </ul>
   )
 }
