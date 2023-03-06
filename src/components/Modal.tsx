@@ -15,7 +15,7 @@ function Modal({ text, isActive, setIsActive }: Props) {
 
   return (
     <div className={`modal ${isActive && 'modal--active'}`}>
-      <div className="modal__window">
+      <div className={`modal__window ${isActive && 'modal__window--active'}`}>
         <div className="modal__window__header">
           <h2 className="modal__window__title">Message</h2>
           <img

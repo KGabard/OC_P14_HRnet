@@ -16,7 +16,7 @@ import Modal from '../components/Modal'
 function Home() {
   initializeLocalStorage()
 
-  const [isModalActive, setIsModalActive] = useState(true)
+  const [isModalActive, setIsModalActive] = useState(false)
 
   // defining the initial state for the form
   const initialState = {
@@ -87,6 +87,7 @@ function Home() {
 
     localStorage.setItem('employeesList', JSON.stringify(employeesList))
 
+    setIsModalActive(true)
     reinitializeData()
     formElement.reset()
   }
@@ -94,7 +95,7 @@ function Home() {
   return (
     <section className="home">
       <Modal
-        text="Employee added successfully!"
+        text="Employee added successfully !"
         isActive={isModalActive}
         setIsActive={setIsModalActive}
       />
