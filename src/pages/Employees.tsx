@@ -1,5 +1,5 @@
 import React from 'react'
-import Array from '../layouts/Array'
+import Table from '../layouts/Table'
 import { employeeType } from '../scripts/types/Types'
 
 function Employees() {
@@ -14,9 +14,10 @@ function Employees() {
   return (
     <section className="employees">
       <h1 className="employees__title">Employees List</h1>
-      <Array
+      <Table
         data={employeesList}
         columnsWidth={[1, 1, 0.85, 1, 0.85, 1, 1, 1, 0.7]}
+        colors={{ primary: 'var(--highlight-primary)', secondary: 'var(--highlight-secondary)' }}
         enableNumberOfEntries={true}
         enableSearch={true}
         enableSort={true}

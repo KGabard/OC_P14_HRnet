@@ -1,20 +1,16 @@
-.array-line {
+.table-line {
   display: flex;
   flex-direction: row;
   list-style: none;
   border-radius: 6px;
+  overflow: hidden;
 
   &__item {
     width: 0;
     @include typographies(body);
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
     padding: 12px 0px 12px 16px;
-  }
-
-  &:nth-child(odd) {
-    background-color: rgba($color: $highlight-secondary, $alpha: 0.4);
   }
 
   &__error {

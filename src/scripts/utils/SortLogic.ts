@@ -1,4 +1,4 @@
-import { DataType, sortType } from '../../layouts/Array'
+import { DataType, sortType } from '../../layouts/Table'
 import { stringIsADate, stringIsANumber } from './Utils'
 
 function sortStringRule(

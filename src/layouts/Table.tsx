@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ArrayHeader from '../components/ArrayHeader'
-import ArrayLine from '../components/ArrayLine'
+import TableHeader from '../components/TableHeader'
+import TableLine from '../components/TableLine'
 import NumberOfEntries from '../components/NumberOfEntries'
 import PageSelector from '../components/PageSelector'
 import Search from '../components/Search'
@@ -21,9 +21,13 @@ type Props = {
   enableNumberOfEntries?: boolean
   enableSearch?: boolean
   enableSort?: boolean
+  colors?: {
+    primary: string
+    secondary: string
+  }
 }
 
-function filterArray(data: DataType[], search: string) {
+function filterData(data: DataType[], search: string) {
   if (search === '') return data
 
   const filteredData = data.filter((item) => {
@@ -39,12 +43,16 @@ function filterArray(data: DataType[], search: string) {
   return filteredData
 }
 
-function Array({
+function Table({
   data,
   columnsWidth,
   enableNumberOfEntries = false,
   enableSearch = false,
   enableSort = false,
+  colors = {
+    primary: '#000000',
+    secondary: '#909090',
+  },
 }: Props) {
   let propsError = false
   const referenceKeys = data.length > 0 ? Object.keys(data[0]) : []
@@ -53,17 +61,20 @@ function Array({
   const [entriesPerPage, setEntriesPerPage] = useState(10)
   const [sort, setSort] = useState<sortType>({ value: null, order: null })
   const [search, setSearch] = useState('')
-  
+
   let filteredData = [...data]
   if (search !== '') {
-    filteredData = filterArray(filteredData, search)
+    filteredData = filterData(filteredData, search)
   }
 
   const currentFirstItem = Math.min(
     (currentPage - 1) * entriesPerPage + 1,
     filteredData.length
   )
-  const currentLastItem = Math.min(currentPage * entriesPerPage, filteredData.length)
+  const currentLastItem = Math.min(
+    currentPage * entriesPerPage,
+    filteredData.length
+  )
   const maxPage = Math.ceil(filteredData.length / entriesPerPage)
 
   if (sort.value !== null && sort.order !== null) {
@@ -88,7 +99,7 @@ function Array({
   }
 
   return !propsError ? (
-    <section className="array">
+    <section className="table">
       {enableNumberOfEntries && (
         <NumberOfEntries
           numberOfEntries={entriesPerPage}
@@ -103,46 +114,50 @@ function Array({
           setPage={setCurrentPage}
         />
       )}
-      <div className="array__container">
-        <ArrayHeader
+      <div className="table__container" style={{ borderColor: colors.primary }}>
+        <TableHeader
           referenceKeys={referenceKeys}
           columnsWidth={columnsWidth}
           sort={sort}
           setSort={setSort}
           setPage={setCurrentPage}
           enableSort={enableSort}
+          colors={colors}
         />
         {sliceData.length > 0 ? (
           sliceData.map((item, index) => {
             return (
-              <ArrayLine
+              <TableLine
                 data={item}
                 referenceKeys={referenceKeys}
                 columnsWidth={columnsWidth}
                 key={index}
+                row={index}
+                colors={colors}
               />
             )
           })
         ) : (
-          <p className="array__no-data">No data</p>
+          <p className="table__no-data">No data</p>
         )}
       </div>
-      <p className="array__page-indicator">{`Showing ${currentFirstItem} to ${currentLastItem} of ${data.length} entries`}</p>
+      <p className="table__page-indicator">{`Showing ${currentFirstItem} to ${currentLastItem} of ${filteredData.length} entries`}</p>
       <PageSelector
         currentPage={currentPage}
         maxPage={maxPage}
         nextPage={nextPage}
         previousPage={previousPage}
         setPage={setCurrentPage}
+        colors={colors}
       />
     </section>
   ) : (
-    <section className="array">
-      <p className="array__error">
+    <section className="table">
+      <p className="table__error">
         Error in props : ColumnsWidth length different from referenceKeys length
       </p>
     </section>
   )
 }
 
-export default Array
+export default Table

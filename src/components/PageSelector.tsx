@@ -1,5 +1,5 @@
 import React from 'react'
-import triangleIcon from '../assets/icons/triangle-icon.svg'
+import PageButton from './PageButton'
 
 type Props = {
   currentPage: number
@@ -7,6 +7,10 @@ type Props = {
   nextPage: () => void
   previousPage: () => void
   setPage: (page: number) => void
+  colors: {
+    primary: string
+    secondary: string
+  }
 }
 
 export function pageArrayCreator(currentPage: number, maxPage: number) {
@@ -55,36 +59,40 @@ function PageSelector({
   nextPage,
   previousPage,
   setPage,
+  colors,
 }: Props) {
   const pageArray = pageArrayCreator(currentPage, maxPage)
 
-  const handleSetPage = (page: string) => {
-    if (!Number.isInteger(parseInt(page))) return
-    setPage(parseInt(page))
-  }
-
   return (
     <div className="page-selector">
-      <button className="page-selector__button" onClick={previousPage}>
-        <img src={triangleIcon} alt={'Previous'} className="page-selector__button__previous-icon" />
-      </button>
+      <PageButton
+        type="previous"
+        currentPage={currentPage}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        setPage={setPage}
+        colors={colors}
+      />
       {pageArray.map((page, index) => (
-        <button
-          className={`page-selector__button ${
-            page === currentPage.toString()
-              ? 'page-selector__button--active'
-              : ''
-          }`}
-          key={index}
-          onClick={() => handleSetPage(page)}
-          value={page}
-        >
-          {page}
-        </button>
+        <PageButton
+          type="page"
+          page={page}
+          currentPage={currentPage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+          setPage={setPage}
+          colors={colors}
+          key={`page ${index}`}
+        />
       ))}
-      <button className="page-selector__button" onClick={nextPage}>
-        <img src={triangleIcon} alt={'Next'} className="page-selector__button__next-icon" />
-      </button>
+      <PageButton
+        type="next"
+        currentPage={currentPage}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        setPage={setPage}
+        colors={colors}
+      />
     </div>
   )
 }

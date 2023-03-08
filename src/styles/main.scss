@@ -5,8 +5,8 @@
 @import './Utils/animations';
 @import './Base/base';
 
-@import './components/array-header';
-@import './components/array-line';
+@import './components/table-header';
+@import './components/table-line';
 @import './components/page-selector';
 @import './components/number-of-entries';
 @import './components/search';
@@ -15,7 +15,7 @@
 @import './layouts/header';
 @import './layouts/footer';
 @import './layouts/page-layout';
-@import './layouts/array';
+@import './layouts/table';
 
 @import './pages/home';
 @import './pages/employees';

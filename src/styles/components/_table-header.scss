@@ -1,9 +1,9 @@
-.array-header {
+.table-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   list-style: none;
-  border-bottom: 2px solid $highlight-primary;
+  border-bottom: 2px solid $basic-black;
 
   &__item {
     width: 0;
@@ -29,19 +29,19 @@
 
       &__button {
         border: none;
-        background-color: $highlight-primary;
+        background-color: $basic-black;
         padding: 8px 6px;
         border-radius: 6px;
 
         &--active,
         &:hover {
           transition: background-color 0.2s ease-in-out;
-          background-color: $highlight-secondary;
+          background-color: lighten($color: $basic-black, $amount: 60%);
           cursor: pointer;
         }
 
-        &__up-icon,
-        &__down-icon {
+        &__asc-icon,
+        &__desc-icon {
           width: 14px;
           height: 14px;
           display: flex;
@@ -50,7 +50,7 @@
           cursor: pointer;
         }
 
-        &__down-icon {
+        &__desc-icon {
           transform: rotate(180deg);
         }
       }

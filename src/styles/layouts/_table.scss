@@ -1,4 +1,4 @@
-.array {
+.table {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -11,7 +11,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 2px solid $highlight-primary;
+    border: 2px solid $basic-black;
     border-radius: 8px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
     padding: 24px;

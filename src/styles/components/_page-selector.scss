@@ -13,17 +13,10 @@
     height: 40px;
     @include typographies(body-bold);
     color: $basic-white;
-    background-color: $highlight-primary;
+    background-color: $basic-black;
     border: none;
     outline: none;
     border-radius: 8px;
-
-    &--active,
-    &:not([value='...']):hover {
-      transition: background-color 0.2s ease-in-out;
-      background-color: $highlight-secondary;
-      cursor: pointer;
-    }
 
     &__previous-icon,
     &__next-icon {

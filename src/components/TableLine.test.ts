@@ -1,7 +1,7 @@
 import {
   isKeysEqualsReferenceKeys,
   isKeysInSameOrderThanReferenceKeys,
-} from './ArrayLine'
+} from './TableLine'
 
 const referenceItem = {
   firstName: 'Elijah',
@@ -45,21 +45,32 @@ const referenceKeys = Object.keys(referenceItem)
 describe('isKeysEqualsReferenceKeys test suite', () => {
   it('should return true if keys are equals to reference keys', () => {
     expect(isKeysEqualsReferenceKeys(referenceItem, referenceKeys)).toBe(true)
-    expect(isKeysEqualsReferenceKeys(itemWithDifferentKeyOrder, referenceKeys)).toBe(true)
+    expect(
+      isKeysEqualsReferenceKeys(itemWithDifferentKeyOrder, referenceKeys)
+    ).toBe(true)
   })
 
   it('should return false if keys are not equals to reference keys', () => {
-    expect(isKeysEqualsReferenceKeys(itemWithDifferentKey, referenceKeys)).toBe(false)
+    expect(isKeysEqualsReferenceKeys(itemWithDifferentKey, referenceKeys)).toBe(
+      false
+    )
   })
 })
 
 // test isKeysInSameOrderThanReferenceKeys
 describe('isKeysInSameOrderThanReferenceKeys test suite', () => {
   it('should return true if keys are in same order than reference keys', () => {
-    expect(isKeysInSameOrderThanReferenceKeys(referenceItem, referenceKeys)).toBe(true)
+    expect(
+      isKeysInSameOrderThanReferenceKeys(referenceItem, referenceKeys)
+    ).toBe(true)
   })
 
   it('should return false if keys are not in same order than reference keys', () => {
-    expect(isKeysInSameOrderThanReferenceKeys(itemWithDifferentKeyOrder, referenceKeys)).toBe(false)
+    expect(
+      isKeysInSameOrderThanReferenceKeys(
+        itemWithDifferentKeyOrder,
+        referenceKeys
+      )
+    ).toBe(false)
   })
 })

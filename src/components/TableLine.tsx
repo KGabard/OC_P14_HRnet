@@ -1,10 +1,15 @@
 import React from 'react'
-import { DataType } from '../layouts/Array'
+import { DataType } from '../layouts/Table'
 
 type Props = {
   data: DataType
   referenceKeys: string[]
   columnsWidth: number[]
+  row: number
+  colors: {
+    primary: string
+    secondary: string
+  }
 }
 
 // Function that check if the keys of the current object are the same as the reference keys
@@ -30,17 +35,24 @@ export function isKeysInSameOrderThanReferenceKeys(
   return currentKeys.every((key, index) => key === referenceKeys[index])
 }
 
-function ArrayLine({ data, referenceKeys, columnsWidth }: Props) {
+function isRowOdd(number: number) {
+  return number % 2 === 1
+}
+
+function TableLine({ data, referenceKeys, columnsWidth, row, colors }: Props) {
   const values = Object.values(data)
 
   return isKeysInSameOrderThanReferenceKeys(data, referenceKeys) ? (
-    <ul className="array-line">
+    <ul className="table-line">
       {values.map((value, index) => {
         return (
           <li
-            className="array-line__item"
+            className="table-line__item"
             key={index}
-            style={{ flexGrow: columnsWidth[index] }}
+            style={{
+              flexGrow: columnsWidth[index],
+              backgroundColor: isRowOdd(row) ? colors.secondary : 'transparent',
+            }}
           >
             {value}
           </li>
@@ -48,8 +60,8 @@ function ArrayLine({ data, referenceKeys, columnsWidth }: Props) {
       })}
     </ul>
   ) : (
-    <ul className="array-line">
-      <p className="array-line__error">
+    <ul className="table-line">
+      <p className="table-line__error">
         {isKeysEqualsReferenceKeys(data, referenceKeys)
           ? 'The keys are not in the same order than the reference keys'
           : 'The keys are not the same than the reference keys'}
@@ -58,4 +70,4 @@ function ArrayLine({ data, referenceKeys, columnsWidth }: Props) {
   )
 }
 
-export default ArrayLine
+export default TableLine
