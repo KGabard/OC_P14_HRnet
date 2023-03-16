@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# OC Projet n°14 : HRnet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Objectifs
+- Convertir une application JQuery en une application React.
+- Développer l'application avec Typecscript.
+- Créer et publier un package npm.
+- Utiliser le stockage locale pour la persistence des données.
+- Etablir un rapport de performance à l'aide de Lighthouse.
 
-## Available Scripts
+## Description
+HRnet est une application interne permettant de consulter et gérer une base de donnée d'employés.
 
-In the project directory, you can run:
+## Technologies
+Framework :
+- React
 
-### `npm start`
+Langages :
+- Typescript
+- HTML
+- CSS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Outils :
+- React Router
+- SASS
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Maquettes
+Le projet d'origine en JQuery est fourni par Openclassrooms : [ici](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
 
-### `npm test`
+## Démo du site
+La démo du site est disponible : [ici](https://kgabard.github.io/OC_P14_HRnet/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Création d'un package npm
+Le package npm créé se nomme react-data-table et concerne le composant Table qui permet d'afficher un tableau de données sous forme d'une table. (voir page 'employees')
+Lien Github du package : [ici](https://github.com/KGabard/react-data-table)
+Lien npm du package : [ici](https://www.npmjs.com/package/@kgabard/react-data-table) 
 
-### `npm run build`
+## Rapport de comparaison Lighthouse
+Le rapport de comparaison Lighthouse entre les deux version est disponible : [ici](https://github.com/KGabard/OC_P14_HRnet/tree/main/documents/Comparaison_des_rapports_Lighthouse.pdf)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Règles de convention de nommage pour ce projet :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### SCSS :
+Pour les noms de variables et de classes : `kebab-case`
+```
+  ex: .user-page{...}
+  ex: $highlight-primary: #ff0101
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### JS :
+Pour les noms de variables et de fonctions : `camelCase`
+```
+  ex: const caloriesCoef = 0.2
+  ex: function convertDuration(duration) {...}
+```
