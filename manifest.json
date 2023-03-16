@@ -1,0 +1,15 @@
+{
+  "short_name": "HRnet App",
+  "name": "HRnet App",
+  "icons": [
+    {
+      "src": "hrnet-logo.png",
+      "type": "image/png",
+      "sizes": "716x720"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

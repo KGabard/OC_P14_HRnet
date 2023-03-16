@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/OC_P14_Hrnet/static/css/main.2af55fa1.css",
+    "main.js": "/OC_P14_Hrnet/static/js/main.ae13beb0.js",
+    "static/media/wealth-health-logo.png": "/OC_P14_Hrnet/static/media/wealth-health-logo.bd1257936bc336b4ac20.png",
+    "static/media/hrnet-logo.png": "/OC_P14_Hrnet/static/media/hrnet-logo.793467cb95142b7f5db2.png",
+    "static/media/triangle-icon.svg": "/OC_P14_Hrnet/static/media/triangle-icon.c66cdb4a3dbda9d04a7d4e23193bd4a3.svg",
+    "static/media/close-icon.svg": "/OC_P14_Hrnet/static/media/close-icon.3c4b225d898d2b54b9f5fbecb83ac8cc.svg",
+    "index.html": "/OC_P14_Hrnet/index.html",
+    "static/media/calendar-icon.svg": "/OC_P14_Hrnet/static/media/calendar-icon.9833944efed5836d516f6fe85909dcbd.svg",
+    "static/media/magnifying-glass-icon.svg": "/OC_P14_Hrnet/static/media/magnifying-glass-icon.bf7c00a4cf3b50288170bca48fe9fd9a.svg",
+    "main.2af55fa1.css.map": "/OC_P14_Hrnet/static/css/main.2af55fa1.css.map",
+    "main.ae13beb0.js.map": "/OC_P14_Hrnet/static/js/main.ae13beb0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2af55fa1.css",
+    "static/js/main.ae13beb0.js"
+  ]
+}
