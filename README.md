@@ -4,7 +4,7 @@
 - Convertir une application JQuery en une application React.
 - Développer l'application avec Typecscript.
 - Créer et publier un package npm.
-- Utiliser le stockage locale pour la persistence des données.
+- Utiliser le stockage local pour la persistance des données.
 - Etablir un rapport de performance à l'aide de Lighthouse.
 
 ## Description
@@ -30,12 +30,12 @@ Le projet d'origine en JQuery est fourni par Openclassrooms : [ici](https://gith
 La démo du site est disponible : [ici](https://kgabard.github.io/OC_P14_HRnet/)
 
 ## Création d'un package npm
-Le package npm créé se nomme react-data-table et concerne le composant Table qui permet d'afficher un tableau de données sous forme d'une table. (voir page 'employees')
+Le package npm créé se nomme react-data-table et concerne le composant Table qui permet d'afficher un tableau de données sous forme d'une table. (Voir page 'employees')
 Lien Github du package : [ici](https://github.com/KGabard/react-data-table)
 Lien npm du package : [ici](https://www.npmjs.com/package/@kgabard/react-data-table) 
 
 ## Rapport de comparaison Lighthouse
-Le rapport de comparaison Lighthouse entre les deux version est disponible : [ici](https://github.com/KGabard/OC_P14_HRnet/tree/main/documents/Comparaison_des_rapports_Lighthouse.pdf)
+Le rapport de comparaison Lighthouse entre les deux versions est disponible : [ici](https://github.com/KGabard/OC_P14_HRnet/tree/main/documents/Comparaison_des_rapports_Lighthouse.pdf)
 
 ## Règles de convention de nommage pour ce projet :
 
