@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from '../layouts/Table'
+import Table from '@kgabard/react-data-table'
 import { employeeType } from '../scripts/types/Types'
 
 function Employees() {

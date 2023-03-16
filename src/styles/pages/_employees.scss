@@ -12,3 +12,9 @@
     @include typographies(header);
   }
 }
+
+@include tablet {
+  .employees {
+    padding: 40px $mobile-margin 56px;
+  }
+}

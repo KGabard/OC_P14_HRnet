@@ -36,3 +36,16 @@
     }
   }
 }
+
+@include tablet {
+  .header {
+    padding: 8px $mobile-margin;
+  }
+}
+
+@include mobile {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
