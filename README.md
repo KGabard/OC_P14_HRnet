@@ -30,8 +30,8 @@ Le projet d'origine en JQuery est fourni par Openclassrooms : [ici](https://gith
 La démo du site est disponible : [ici](https://kgabard.github.io/OC_P14_HRnet/)
 
 ## Création d'un package npm
-Le package npm créé se nomme react-data-table et concerne le composant Table qui permet d'afficher un tableau de données sous forme d'une table. (Voir page 'employees')
-Lien Github du package : [ici](https://github.com/KGabard/react-data-table)
+Le package npm créé se nomme react-data-table et concerne le composant Table qui permet d'afficher un tableau de données sous forme d'une table. (Voir page 'employees')</br>
+Lien Github du package : [ici](https://github.com/KGabard/react-data-table)</br>
 Lien npm du package : [ici](https://www.npmjs.com/package/@kgabard/react-data-table) 
 
 ## Rapport de comparaison Lighthouse
