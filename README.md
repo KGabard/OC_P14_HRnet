@@ -8,7 +8,7 @@
 - Etablir un rapport de performance à l'aide de Lighthouse.
 
 ## Description
-HRnet est une application interne permettant de consulter et gérer une base de donnée d'employés.
+HRnet est une application interne permettant de consulter et gérer une base de données d'employés.
 
 ## Technologies
 Framework :
@@ -22,6 +22,10 @@ Langages :
 Outils :
 - React Router
 - SASS
+
+Librairies :
+- react-datepicker
+- @kgabard/react-data-table
 
 ## Maquettes
 Le projet d'origine en JQuery est fourni par Openclassrooms : [ici](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
