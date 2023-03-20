@@ -27,8 +27,11 @@ Librairies :
 - react-datepicker
 - @kgabard/react-data-table
 
-## Maquettes
+## Projet d'origine
 Le projet d'origine en JQuery est fourni par Openclassrooms : [ici](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
+
+## Maquettes
+Les maquettes du site sont disponible : [ici](https://www.figma.com/file/HdRiMG5LMDhYYz7b2eV5GJ/HRnet?t=jrCrwPRjIxWDiOXg-6)
 
 ## Démo du site
 La démo du site est disponible : [ici](https://kgabard.github.io/OC_P14_HRnet/)
