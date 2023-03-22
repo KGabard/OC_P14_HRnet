@@ -22,6 +22,7 @@ Langages :
 Outils :
 - React Router
 - SASS
+- Figma
 
 Librairies :
 - react-datepicker
